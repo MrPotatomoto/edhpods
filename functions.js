@@ -2,7 +2,7 @@ const pod_count = { value: 0 }
 const playerInput = document.querySelector('#add_player')
 const pods = document.querySelector('#pods')
 let clearBtnDiv = document.querySelector('#clear-button')
-let storedPlayers = JSON.parse(localStorage.getItem('players'))
+let storedPlayers = []
 
 export const shuffle = (array) => {
   let currentIndex = array.length;
