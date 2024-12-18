@@ -33,7 +33,6 @@ body {
 
 header {
   background-color: var(--primary-600);
-  text-align: center;
   font-weight: bold;
 }
 
@@ -43,6 +42,10 @@ header p {
 
 header a {
   font-size: 1.25rem;
+}
+
+header .logo {
+  font-size: 2rem;
 }
 
 main {
@@ -195,7 +198,7 @@ h1 {
 
 .sub-heading {
   font-size: 1rem;
-  color: var(--primary-300);
+  color: var(--primary-200);
   font-weight: 100;
   font-style: italic;
 }
@@ -257,4 +260,8 @@ mt-3 {
 
 .text-light {
   color: var(--primary-100)
+}
+
+.text-right {
+  text-align: right;
 }
