@@ -193,6 +193,13 @@ h1 {
   font-weight: bold;
 }
 
+.sub-heading {
+  font-size: 1rem;
+  color: var(--primary-300);
+  font-weight: 100;
+  font-style: italic;
+}
+
 .gap-3
 {
   gap: 1rem;
