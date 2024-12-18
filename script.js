@@ -5,7 +5,7 @@ const form = document.querySelector('#add_player_form')
 const randomizeBtn = document.querySelector('#randomize')
 
 const randomize = () => {
-  render()
+  render(true)
 }
 
 randomizeBtn.addEventListener('click', randomize)

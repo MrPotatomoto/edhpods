@@ -54,7 +54,7 @@ export const createPlayerList = (players, div, group_size = 5) => {
 
   let pod = document.createElement('ul')
   for (let i=0; i<group_size; i++) {
-    pod.appendChild(createPlayerListItem(players.pop()))
+    pod.appendChild(createPlayerListItem(players.shift()))
   }
   if (group_size === 3) {
     pod.appendChild(createPlayerListItem({ name: '-' }))
@@ -75,7 +75,7 @@ export const applyPodHeadings = () => {
   }
 }
 
-export const render = () => {
+export const render = (randomize = false) => {
   pod_count.value = 0
   pods.innerHTML = ''
 
@@ -86,28 +86,32 @@ export const render = () => {
     return
   }
 
-  shuffle(tempPlayers)
+  if (!randomize) {
+    createPlayerList(tempPlayers, pods, tempPlayers.length)
+    return
+  }
 
+  shuffle(tempPlayers)
   if (tempPlayers.length < 6) {
     createPlayerList(tempPlayers, pods, tempPlayers.length)
   }
-
+  
   if (tempPlayers.length % 4 === 1) {
     for (let i=0; i<3; i++) {
       createPlayerList(tempPlayers, pods, 3)
     }
   }
-
+  
   if (tempPlayers.length % 4 === 2) {
     for (let i=0; i<2; i++) {
       createPlayerList(tempPlayers, pods, 3)
     }
   }
-
+  
   if (tempPlayers.length % 4 === 3) {
     createPlayerList(tempPlayers, pods, 3)
   }
-
+  
   if (tempPlayers.length % 4 === 0) {
     while (tempPlayers.length) {
       createPlayerList(tempPlayers, pods, 4)
@@ -115,4 +119,5 @@ export const render = () => {
   }
 
   applyPodHeadings()
+  
 }
