@@ -1,18 +1,8 @@
 const pod_count = { value: 0 }
 const playerInput = document.querySelector('#add_player')
 const pods = document.querySelector('#pods')
-const players = [
-  // {name:'Jeremy'},
-  // {name:'Jacob'},
-  // {name:'Jarrod'},
-  // {name:'Nick'},
-  // {name:'Ali-san'},
-  // {name:'Tyler'},
-  // {name:'Scott'},
-  // {name:'Donald'},
-  // {name:'Michael'},
-  // {name:'Mick'}
-]
+let clearBtnDiv = document.querySelector('#clear-button')
+let storedPlayers = JSON.parse(localStorage.getItem('players'))
 
 export const shuffle = (array) => {
   let currentIndex = array.length;
@@ -30,11 +20,23 @@ export const shuffle = (array) => {
   }
 }
 
+export const createClearButton = () => {
+  let clearBtn = document.createElement('button')
+  clearBtn.id = 'clear'
+  clearBtn.innerText = 'Clear'
+  clearBtn.addEventListener('click', clearPlayerList)
+
+  clearBtnDiv.innerHTML = ''
+  clearBtnDiv.appendChild(clearBtn)
+}
+
 export const addPlayer = () => {
   // for adding players to the players array
   // don't forget to rerender the page
   const value = playerInput.value
-  players.push({ name: value })
+  storedPlayers.push({ name: value })
+
+  localStorage.setItem('players', JSON.stringify(storedPlayers))
 
   playerInput.value = ''
 
@@ -75,11 +77,20 @@ export const applyPodHeadings = () => {
   }
 }
 
+export const clearPlayerList = () => {
+  storedPlayers = []
+  localStorage.setItem('players', JSON.stringify(storedPlayers))
+
+  clearBtnDiv.innerHTML = ''
+
+  render()
+}
+
 export const render = (randomize = false) => {
   pod_count.value = 0
   pods.innerHTML = ''
 
-  let tempPlayers = Array.from(players)
+  let tempPlayers = Array.from(storedPlayers)
   
   if (!tempPlayers.length) {
     pods.innerHTML = `<span class="heading fw-light text-light italic text-center">Add players to get started...</span>`
@@ -88,6 +99,7 @@ export const render = (randomize = false) => {
 
   if (!randomize) {
     createPlayerList(tempPlayers, pods, tempPlayers.length)
+    createClearButton()
     return
   }
 
@@ -117,6 +129,8 @@ export const render = (randomize = false) => {
       createPlayerList(tempPlayers, pods, 4)
     }
   }
+
+  createClearButton()
 
   applyPodHeadings()
   
