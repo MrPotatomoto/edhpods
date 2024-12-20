@@ -46,9 +46,11 @@ export const addPlayer = () => {
 
 export const removePlayer = (value) => {
   storedPlayers = storedPlayers.filter(player => { return player.name != value })
+
   if (storedPlayers.length === 0) {
     clearPlayerList()
   }
+
   localStorage.setItem('players', JSON.stringify(storedPlayers))
 
   render()
@@ -80,12 +82,15 @@ export const createPlayerList = (players, div, group_size = 5) => {
   pod_div.className = 'pod-div rounded-md'
 
   let pod = document.createElement('ul')
+
   for (let i=0; i<group_size; i++) {
     pod.appendChild(createPlayerListItem(players.shift()))
   }
+
   if (group_size === 3) {
     pod.appendChild(createPlayerListItem({ name: '-' }))
   }
+
   let pod_heading = document.createElement('span')
   pod_heading.innerText = 'Players'
 
@@ -97,6 +102,7 @@ export const createPlayerList = (players, div, group_size = 5) => {
 
 export const applyPodHeadings = () => {
   let headings = document.querySelectorAll('.pod-div span')
+  
   for (let heading of headings) {
     heading.innerText = 'Pod ' + ++pod_count.value
   }

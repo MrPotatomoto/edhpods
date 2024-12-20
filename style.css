@@ -67,17 +67,7 @@ footer {
   font-size: 1.25rem;
 }
 
-.border {
-  border: 1px solid rgb(220,220,220);
-}
 
-.rounded-md {
-  border-radius: .5rem;
-}
-
-.rounded-sm {
-  border-radius: .25rem;
-}
 
 input,
 .btn {
@@ -131,6 +121,13 @@ li {
   font-size: 1.25rem;
 }
 
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+/* UTILITY CLASSES */
+
 .w-full {
   width: 100%;
 }
@@ -146,9 +143,16 @@ li {
   background-color: var(--primary-300);
 }
 
-h1 {
-  text-align: center;
-  font-size: 2.5rem;
+.border {
+  border: 1px solid rgb(220,220,220);
+}
+
+.rounded-md {
+  border-radius: .5rem;
+}
+
+.rounded-sm {
+  border-radius: .25rem;
 }
 
 .flex {
