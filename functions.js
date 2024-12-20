@@ -87,10 +87,6 @@ export const createPlayerList = (players, div, group_size = 5) => {
     pod.appendChild(createPlayerListItem(players.shift()))
   }
 
-  if (group_size === 3) {
-    pod.appendChild(createPlayerListItem({ name: '-' }))
-  }
-
   let pod_heading = document.createElement('span')
   pod_heading.innerText = 'Players'
 
@@ -102,7 +98,7 @@ export const createPlayerList = (players, div, group_size = 5) => {
 
 export const applyPodHeadings = () => {
   let headings = document.querySelectorAll('.pod-div span')
-  
+
   for (let heading of headings) {
     heading.innerText = 'Pod ' + ++pod_count.value
   }
