@@ -204,8 +204,8 @@ h1 {
 }
 
 .trash-can {
-  max-width: 24px;
-  fill: crimson;
+  max-width: 20px;
+  fill: rgb(198, 62, 89);
 }
 
 .gap-3
