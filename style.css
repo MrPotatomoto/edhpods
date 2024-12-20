@@ -80,7 +80,7 @@ footer {
 }
 
 input,
-button {
+.btn {
   padding: 1rem;
   border-radius: .5rem;
   font-size: 1.25rem;
@@ -135,14 +135,14 @@ li {
   width: 100%;
 }
 
-button {
+.btn {
   padding: 1rem 1.5rem;
   background-color: var(--primary-400);
   color: white;
   font-weight: bold;
 }
 
-button:hover {
+.btn:hover {
   background-color: var(--primary-300);
 }
 
@@ -201,6 +201,11 @@ h1 {
   color: var(--primary-200);
   font-weight: 100;
   font-style: italic;
+}
+
+.trash-can {
+  max-width: 24px;
+  fill: crimson;
 }
 
 .gap-3
