@@ -3,6 +3,7 @@ const playerInput = document.querySelector('#add_player')
 const pods = document.querySelector('#pods')
 let clearBtnDiv = document.querySelector('#clear-button')
 let storedPlayers = JSON.parse(localStorage.getItem('players')) || []
+let isRandomized = localStorage.getItem('isRandomized') || false
 
 export const shuffle = (array) => {
   let currentIndex = array.length;
@@ -18,6 +19,9 @@ export const shuffle = (array) => {
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex], array[currentIndex]];
   }
+
+  localStorage.setItem('players', JSON.stringify(array))
+  localStorage.setItem('isRandomized', true)
 }
 
 export const createClearButton = () => {
@@ -41,7 +45,7 @@ export const addPlayer = () => {
 
   playerInput.value = ''
 
-  render()
+  render(false)
 }
 
 export const removePlayer = (value) => {
@@ -53,7 +57,7 @@ export const removePlayer = (value) => {
 
   localStorage.setItem('players', JSON.stringify(storedPlayers))
 
-  render()
+  render(false)
 }
 
 export const createPlayerListItem = (player) => {
@@ -108,6 +112,8 @@ export const clearPlayerList = () => {
   storedPlayers = []
   localStorage.setItem('players', JSON.stringify(storedPlayers))
 
+  localStorage.setItem('isRandomized', false)
+
   clearBtnDiv.innerHTML = ''
 
   render()
@@ -118,19 +124,22 @@ export const render = (randomize = false) => {
   pods.innerHTML = ''
 
   let tempPlayers = Array.from(storedPlayers)
+  localStorage.setItem('players', JSON.stringify(tempPlayers))
   
   if (!tempPlayers.length) {
     pods.innerHTML = `<span class="heading fw-light text-light italic text-center">Add players to get started...</span>`
     return
   }
 
-  if (!randomize) {
+  if (!randomize && !isRandomized) {
     createPlayerList(tempPlayers, pods, tempPlayers.length)
     createClearButton()
     return
   }
 
-  shuffle(tempPlayers)
+  if (randomize)
+    shuffle(tempPlayers)
+
   if (tempPlayers.length < 6) {
     createPlayerList(tempPlayers, pods, tempPlayers.length)
   }
