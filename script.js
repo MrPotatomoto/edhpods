@@ -1,4 +1,4 @@
-import { render, addPlayer, removePlayer } from './functions.js'
+import { render, addPlayer } from './functions.js'
 
 
 const form = document.querySelector('#add_player_form')
