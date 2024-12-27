@@ -114,6 +114,8 @@ export const clearPlayerList = () => {
 
   localStorage.setItem('isRandomized', false)
 
+  localStorage.clear()
+
   clearBtnDiv.innerHTML = ''
 
   render()
@@ -131,11 +133,14 @@ export const render = (randomize = false) => {
     return
   }
 
-  if (!randomize && !isRandomized) {
+  
+  if (!randomize && !JSON.parse(isRandomized)) {
     createPlayerList(tempPlayers, pods, tempPlayers.length)
     createClearButton()
     return
   }
+
+  console.log(randomize, isRandomized)
 
   if (randomize)
     shuffle(tempPlayers)
