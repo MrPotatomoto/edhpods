@@ -174,6 +174,5 @@ export const render = (randomize = false) => {
 
   createClearButton()
 
-  applyPodHeadings()
-  
+  applyPodHeadings() 
 }
